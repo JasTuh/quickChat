@@ -63,16 +63,17 @@ get '/conversation/:id' do
             @users.push(u.user_id)
         end
         usernameTMP = User.find(session[:user_id]).username
+        @messages = Message.where(conversation_id:params[:id])
         erb :conversation
     else
         request.websocket do |ws|
             ws.onopen do
                 settings.sockets << ws
-
+                cID = request.path_info.split("/")[2]
                 loc = settings.sockets.length-1
-                sk = Sock.create(array_index:loc, conversation_id:request.path_info.split("/")[2])
+                sk = Sock.create(array_index:loc, conversation_id:cID)
                 ws.onmessage do |msg|
-                    lookUp = Sock.where(conversation_id:request.path_info.split("/")[2])
+                    lookUp = Sock.where(conversation_id:cID)
                     ar = msg.split(",")
                     tstring = ""
                     for i in 0..ar.length-2
@@ -82,7 +83,9 @@ get '/conversation/:id' do
                             tstring += ar[i]
                         end
                     end
-                    EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(User.find(ar[ar.length-1]).username +  ": " + tstring) } }
+                    content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
+                    Message.create(content:content, conversation_id:cID);
+                    EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
                 end
                 ws.onclose do
                     Sock.destroy(sk)
@@ -94,9 +97,6 @@ get '/conversation/:id' do
     end
 end
 
-def find_cur()
-    return User.find(session[:user_id]).username
-end
 post '/login-validation' do
     @user = User.find_by_username params[:username]
     if @user && @user.password == params[:password]
@@ -107,3 +107,7 @@ post '/login-validation' do
         erb :login_page
     end
 end
+
+# get '/conversationList' do
+#     @conversations = 
+# end

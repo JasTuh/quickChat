@@ -1,0 +1,31 @@
+#input {
+	position: fixed;
+	bottom: 0;
+	left:0;
+	height: 50px;
+	width: 95%;
+}
+
+#inputButton{
+	position: fixed;
+	width: 5%;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+	border-radius: 5px;
+	background-color: #3498db;
+	border-color: #3498db;
+}
+
+#msgs{
+	line-height: 15pt;
+}
+
+#title{
+	text-align: center;
+	font-size: 40pt;	
+	margin-bottom: 0px;
+}
+body{
+	max-width: 100%;
+}
