@@ -1,8 +1,8 @@
 require "sinatra"
 require "sinatra/activerecord"
 require 'sinatra-websocket' 
-set :database, "sqlite3:users.sqlite3"
 
+configure(:development){set :database, "sqlite3:users.sqlite3"}
 require 'bundler/setup' 
 require 'rack-flash'
 
