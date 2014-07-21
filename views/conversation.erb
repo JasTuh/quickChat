@@ -1,0 +1,44 @@
+<html>
+	<body>
+		<% if @users.include?session[:user_id] %>
+			<h1>Title: <%=@conversation.title%></h1>
+			<%=flash[:message]if flash[:message]%>
+			<% @a.each do |s| %>
+				<h1> <%= User.find(s.user_id).username %> </h1>
+			<% end %>
+			<a href="/register"> Register </a>
+			<a href="/new-convo"> New Conversation </a>
+		<% else %>
+			<h1> you are not allowed to be here bud </h1>
+		<% end %>
+
+		<form id="form">
+			<input type="text" id="input" value="send a message"></input>
+		</form>
+		<div id="msgs"></div>
+	</body>
+	<script type="text/javascript">
+    window.onload = function(){
+      (function(){
+        var show = function(el){
+          return function(msg){ el.innerHTML = msg + '<br />' + el.innerHTML; }
+        }(document.getElementById('msgs'));
+
+        var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
+        // ws.onopen    = function()  { show('websocket opened'); };
+        // ws.onclose   = function()  { show('websocket closed'); }
+        ws.onmessage = function(m) { show(m.data); };
+
+        var sender = function(f){
+          var input     = document.getElementById('input');
+          input.onclick = function(){ input.value = "" };
+          f.onsubmit    = function(){
+            ws.send(input.value + "," + <%=session[:user_id]%>);
+            input.value = "";
+            return false;
+          }
+        }(document.getElementById('form'));
+      })();
+    }
+  </script>
+</html>
