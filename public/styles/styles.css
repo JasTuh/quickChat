@@ -109,26 +109,106 @@ body{
 .formContainer{
 	position: absolute;
 	top: 28%;
-	left:38%;
+	left:36%;
 	background-color: white;
-	width: 26%;
-	height: 40%;
+	width: 27%;
+	height: 30%;
 	border-radius: 10px;
 	opacity: 0.4;
 }
 .formThing{
 	position: absolute;
 	top: 28%;
-	left:38%;
+	left:39%;
 	text-align: center;
 }
 .titleForm{
 	padding: 10%;
 	padding-top: 0;
 }
-
-.submitBut{
+/*.submitBut{
 	border-radius: 10px;
 	font-size: 15pt;
 	text-align: center;
+} */
+.back{
+	position: fixed;
+	z-index: 2;
+	background-color: #2ecc71;
+	padding: 2%;
+	top: 10%;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+.registerButton{
+	position: fixed;
+	z-index: 2;
+	background-color: #2ecc71;
+	padding: 2%;
+	top: 0;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+.newContainer{
+	position: absolute;
+	top: 28%;
+	left:38%;
+	background-color: white;
+	width: 27%;
+	height: 40%;
+	border-radius: 10px;
+	opacity: 0.4;	
+}
+.convoForm{
+	left:10%;
+}
+.submitBut {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-webkit-border-top-left-radius:3px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	text-indent:0;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:0%;
+	line-height:250%;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+}
+.submitBut:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.submitBut:active {
+	position:relative;
+	top:1px;
 }

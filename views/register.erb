@@ -1,13 +1,24 @@
 
-  <body>
-     <h1>Login</h1>
-     <%=flash[:message]if flash[:message]%>
-     <form method="POST" action="/register-validation">
-       <input type="text" name="username" placeholder="Username"></input>
-       <input type="email" name="email" placeholder="email"></input>
-       <input type="password" name="password" placeholder="Password"></input>
-       <input type="password" name="cpassword" placeholder="Confirm Password"></input>
-       <input type="submit">
-     </form>
-     <a href="/register"> Register </a>
+  <body style="background-color:#e74c3c;">
+    <div>
+         <h1 class="mainTitle">Quick Chat!</h1>
+
+      <div class="formContainer"></div>
+      <div class="formThing" style="position:absolute;">
+         <h1 class="titleForm" style="margin-bottom:0">Login</h1>
+         <%=flash[:message]if flash[:message]%>
+         <form id="form" method="POST" action="/register-validation">
+            <input type="text" name="username" placeholder="Username">
+            <input type="email" name="email" placeholder="email">
+            <br>
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="cpassword" placeholder="Confirm Password">
+            <br><br>
+           <input type="submit" class="submitBut">
+         </form>
+        
+      </div>
+      <a href="/"><div class="registerButton"> Back </div></a> <br><br>
+    </div>
   </body>
+  

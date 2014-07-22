@@ -1,10 +1,10 @@
 
 <body>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+	<a href="/" style="color:black;"><div class="back" >back</div></a>
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title">Title: <%=@conversation.title%></h1>
 		<%=flash[:message]if flash[:message]%>
-		<a href="/"> Other Conversations </a>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
 		<%         flash[:message] = "You are not allowed there."
@@ -38,7 +38,11 @@ window.onload = function(){
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
     // ws.onopen    = function()  { show('websocket opened'); };
     // ws.onclose   = function()  { show('websocket closed'); }
-    ws.onmessage = function(m) { show(m.data); };
+    ws.onmessage = function(m) { 
+    	show(m.data); 
+        window.scroll(0, document.documentElement.offsetHeight);
+
+    };
 
     var sender = function(f){
       var input     = document.getElementById('input');
@@ -46,7 +50,6 @@ window.onload = function(){
       f.onsubmit    = function(){
         ws.send(input.value + "," + <%=session[:user_id]%>);
         input.value = "";
-        window.scroll(0, document.documentElement.offsetHeight);
         return false;
       }
     }(document.getElementById('form'));

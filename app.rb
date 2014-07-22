@@ -39,6 +39,12 @@ post '/register-validation' do
         session[:user_id] = @user.id
         redirect '/'
     end
+    if @user
+            flash[:message] = "Username is already taken."
+    else 
+        flash[:message] = "Passwords do not match."
+    end
+    redirect '/register'
 end
 
 get '/new-convo' do

@@ -4,7 +4,7 @@
          <h1 class="mainTitle">Quick Chat!</h1>
 
       <div class="formContainer"></div>
-      <div class="formThing">
+      <div class="formThing" style="position:absolute;">
          <h1 class="titleForm">Login</h1>
          <%=flash[:message]if flash[:message]%>
          <form id="form" method="POST" action="/login-validation">
@@ -12,7 +12,9 @@
            <input type="password" name="password" placeholder="Password"><br><br>
            <input type="submit" class="submitBut">
          </form>
-         <a href="/register"> Register </a> <br><br>
+         
       </div>
+      <a href="/register"><div class="registerButton"> Register </div></a> <br><br>
     </div>
   </body>
+  

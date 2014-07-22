@@ -9,6 +9,7 @@
          <% for c in @conversations %>
             <a class="listLink" href="/conversation/<%=c.conversation_id%>">
               <%=Conversation.find(c.conversation_id).title%>
+              <br>
             </a>
          <%end %>
         </div>
