@@ -40,7 +40,7 @@ post '/register-validation' do
         redirect '/'
     end
     if @user
-            flash[:message] = "Username is already taken."
+        flash[:message] = "Username is already taken."
     else 
         flash[:message] = "Passwords do not match."
     end
@@ -92,7 +92,10 @@ get '/conversation/:id' do
                         end
                     end
                     content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
-                    Message.create(content:content, conversation_id:cID);
+                    time1 = Time.new
+                    a = Message.create(content:content, conversation_id:cID, created:time1);
+                    puts "TIME"
+                    puts a.created
                     EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
                 end
                 ws.onclose do
@@ -116,3 +119,12 @@ post '/login-validation' do
     end
 end
 
+get '/delete/:id' do
+
+    # Conversation.destroy(params[:id])
+    a = UserConversation.where(conversation_id:params[:id])
+    a.each do |n|
+        UserConversation.destroy(n.id)
+    end
+    redirect '/'
+end

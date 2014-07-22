@@ -14,10 +14,13 @@
 
 	<div id="msgs">
 		<%i = 0
-		 for m in @messages%>
-			<%=m.content%>
-			<%if i != @messages.length - 1 %>
-				<br />
+		for m in @messages%>
+		 	<% time1 = Time.new
+		 	if (time1.utc) < (m.created+60)%>
+				<%=m.content%>
+				<%if i != @messages.length - 1 %>
+					<br />
+				<%end%>
 			<%end%>
 		<% i+=1 %>
 		<%end%>

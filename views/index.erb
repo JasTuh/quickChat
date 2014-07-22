@@ -7,10 +7,12 @@
        <h3 class="listTitle">Conversations: </h3>
        <div class="conversationsList">
          <% for c in @conversations %>
-            <a class="listLink" href="/conversation/<%=c.conversation_id%>">
-              <%=Conversation.find(c.conversation_id).title%>
-              <br>
-            </a>
+            <% if c != nil %>
+              <a class="listLink" href="/conversation/<%=c.conversation_id%>">
+                <%=Conversation.find(c.conversation_id).title%> <a href="/delete/<%=c.conversation_id%>">Delete</a>
+                <br>
+              </a>
+            <%end%>
          <%end %>
         </div>
        <a class="newConvo" href="/new-convo"> New Conversation</a>

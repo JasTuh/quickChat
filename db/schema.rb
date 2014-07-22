@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20140721153830) do
   end
 
   create_table "messages", force: true do |t|
-    t.string  "content"
-    t.integer "conversation_id"
+    t.string   "content"
+    t.integer  "conversation_id"
+    t.datetime "created"
   end
 
   create_table "socks", force: true do |t|
