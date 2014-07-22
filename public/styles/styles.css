@@ -29,3 +29,106 @@
 body{
 	max-width: 100%;
 }
+
+.conversationsList{
+	text-align: center;
+	font-size: 15pt;
+
+}
+
+.mainTitle{
+	font-size: 60pt;
+	text-align: center;
+	background-color: #e74c3c;
+	position: absolute;
+	width: 100%;
+	padding-top: 5%;
+	top: 0;
+	margin-top: 0px;
+	right: 0%;
+	left:0%;
+	height: 17%;
+}
+.spacer{
+	height: 17%;
+}
+.rest{
+	background-color: #3498db;
+	position: absolute;
+	width: 100%;
+	top: 20%;
+	height: 80%;
+	left:0;
+}
+.listTitle{
+	text-align: center;
+	font-size: 40pt;
+	line-height: 10px;
+	margin-bottom: 3%;
+}
+.listLink{
+	text-decoration: none;
+	color: black;
+	font-size: 30pt;
+}
+.listLink:hover{
+	text-decoration: underline;
+}
+.logoutButton{
+	position: fixed;
+	z-index: 2;
+	background-color: #2ecc71;
+	padding: 2%;
+	top: 0;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+.newConvo{
+	position: fixed;
+	z-index: 2;
+	background-color: #2ecc71;
+	padding: 2%;
+	top: 10%;
+	width: 10%;
+	right:0;
+	font-size: 96%;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+.newConvo:hover{
+	text-decoration: underline;
+}
+.logoutButtom:hover{
+	text-decoration: underline;	
+}
+.formContainer{
+	position: absolute;
+	top: 28%;
+	left:38%;
+	background-color: white;
+	width: 26%;
+	height: 40%;
+	border-radius: 10px;
+	opacity: 0.4;
+}
+.formThing{
+	position: absolute;
+	top: 28%;
+	left:38%;
+	text-align: center;
+}
+.titleForm{
+	padding: 10%;
+	padding-top: 0;
+}
+
+.submitBut{
+	border-radius: 10px;
+	font-size: 15pt;
+	text-align: center;
+}

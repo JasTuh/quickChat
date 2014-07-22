@@ -18,6 +18,7 @@ get '/' do
     if (session[:user_id] == nil)
         erb :login_page
     else 
+        @conversations = UserConversation.where(user_id:session[:user_id])
         erb :index
     end
 end
@@ -41,6 +42,7 @@ post '/register-validation' do
 end
 
 get '/new-convo' do
+
     erb :conversation_page
 end
 post '/addconvo' do 
@@ -108,6 +110,3 @@ post '/login-validation' do
     end
 end
 
-# get '/conversationList' do
-#     @conversations = 
-# end

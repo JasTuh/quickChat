@@ -1,9 +1,19 @@
 
   <body>
-     <h1>Simple Echo & Chat Server</h1>
-     <div id="msgs"></div>
-     <a href="/logout"> logout </a> <br>
-     <a href="/new-convo"> New </a>
+      <%=flash[:message]if flash[:message]%>
+     <h1 class="mainTitle">Quick Chat!</h1>
+     <div class="spacer"></div>
+     <div class="rest">
+       <h3 class="listTitle">Conversations: </h3>
+       <div class="conversationsList">
+         <% for c in @conversations %>
+            <a class="listLink" href="/conversation/<%=c.conversation_id%>">
+              <%=Conversation.find(c.conversation_id).title%>
+            </a>
+         <%end %>
+        </div>
+       <a class="newConvo" href="/new-convo"> New Conversation</a>
+     </div>
   </body>
 
   <!--<script type="text/javascript">

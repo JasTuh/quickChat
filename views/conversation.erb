@@ -4,9 +4,12 @@
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title">Title: <%=@conversation.title%></h1>
 		<%=flash[:message]if flash[:message]%>
-		<a href="/conversationList"> Other Conversations </a>
+		<a href="/"> Other Conversations </a>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
+		<%         flash[:message] = "You are not allowed there."
+                   redirect '/' 
+                   %>
 	<% end %>
 
 	<div id="msgs">

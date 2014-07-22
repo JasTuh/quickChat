@@ -3,6 +3,9 @@
 		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	</head>
 	<body>
+		<% if session[:user_id] != nil %>
+			<a href="/logout" style="color:black;"><div class="logoutButton" >logout</div></a>
+		<%end%>
 		<%=yield%>
 	</body>
 </html>
