@@ -57,7 +57,9 @@ post '/addconvo' do
     UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
     users.each do |n| 
         curUser = User.find_by_username(n)
-        UserConversation.create(user_id:curUser.id, conversation_id:@conversation.id)
+        if curUser
+            UserConversation.create(user_id:curUser.id, conversation_id:@conversation.id)
+        end
     end
     redirect "/conversation/#{@conversation.id}"
 end
@@ -91,12 +93,14 @@ get '/conversation/:id' do
                             tstring += ar[i]
                         end
                     end
-                    content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
-                    time1 = Time.new
-                    a = Message.create(content:content, conversation_id:cID, created:time1);
-                    puts "TIME"
-                    puts a.created
-                    EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
+                    if tstring != ""
+                        content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
+                        time1 = Time.new
+                        a = Message.create(content:content, conversation_id:cID, created:time1);
+                        puts "TIME"
+                        puts a.created
+                        EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
+                    end
                 end
                 ws.onclose do
                     Sock.destroy(sk)

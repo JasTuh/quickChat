@@ -12,19 +12,18 @@
                    %>
 	<% end %>
 
-	<div id="msgs">
+	<ul id="msgs" style="list-style-type:none">
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
 		 	if (time1.utc) < (m.created+60)%>
-				<%=m.content%>
+				<li><%=m.content%></li>
 				<%if i != @messages.length - 1 %>
-					<br />
 				<%end%>
 			<%end%>
 		<% i+=1 %>
 		<%end%>
-	</div>
+	</ul>
 	<br><br><br><br>
 	<form id="form">
 		<input type="text" id="input" value="send a message"></input>
@@ -35,7 +34,7 @@
 window.onload = function(){
   (function(){
     var show = function(el){
-      return function(msg){ el.innerHTML =el.innerHTML + '<br />' +  msg }
+      return function(msg){ el.innerHTML =el.innerHTML + '<li>' +  msg  + '</li>'}
     }(document.getElementById('msgs'));
 
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
@@ -57,5 +56,14 @@ window.onload = function(){
       }
     }(document.getElementById('form'));
   })();
+  setTimeout(function(){
+  	i = 0;
+  	console.log("HELLO");
+  	setInterval(function(){
+  		$( "ul li:nth-child("+i+")" ).fadeOut(300);
+  		i++;
+  		console.log("removed " + (i-1));
+  	}, 4500);
+  }, 6000);
 }
 </script>
