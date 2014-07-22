@@ -8,6 +8,9 @@
          <h1 class="titleForm" style="margin-bottom:0">Login</h1>
          <%=flash[:message]if flash[:message]%>
          <form id="form" method="POST" action="/register-validation">
+            <input type="text" name="fname" placeholder="First Name">
+            <input type="text" name="lname" placeholder="Last Name">
+            <br>
             <input type="text" name="username" placeholder="Username">
             <input type="email" name="email" placeholder="email">
             <br>

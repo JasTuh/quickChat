@@ -2,6 +2,7 @@
 <body>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 	<a href="/" style="color:black;"><div class="back" >back</div></a>
+	<div class="addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title">Title: <%=@conversation.title%></h1>
 		<%=flash[:message]if flash[:message]%>
@@ -29,9 +30,24 @@
 		<input type="text" id="input" value="send a message"></input>
 		<input type="submit" id="inputButton" value="send">
 	</form>
+	<div class="addFriendsPopup">
+		<h1 style="text-align:center;">Add Other Users!</h1>
+		<p style="text-align:center;">Users already here.&nbsp;&nbsp;
+			<% @users.each do |t|%> 
+				<%=User.find(t).username %> &nbsp;
+			<%end%>
+		</p>
+		<form action="/addFriend" method="POST" style="position:absolute; top:55%; left:20%">
+			<label for="Username">Username:<input type="text" name="username" placeholder="Username"></label>
+		</form>
+		<br><br>
+		<p class="closeBox">close</p>
+	</div>
 </body>
 <script type="text/javascript">
 window.onload = function(){
+
+
   (function(){
     var show = function(el){
       return function(msg){ el.innerHTML =el.innerHTML + '<li>' +  msg  + '</li>'}
@@ -57,13 +73,23 @@ window.onload = function(){
     }(document.getElementById('form'));
   })();
   setTimeout(function(){
-  	i = 0;
+  	i = 1;
   	console.log("HELLO");
   	setInterval(function(){
-  		$( "ul li:nth-child("+i+")" ).fadeOut(300);
-  		i++;
-  		console.log("removed " + (i-1));
-  	}, 4500);
-  }, 6000);
+  		if (i < ($("ul li").length+1)){
+  			$( "ul li:nth-child("+i+")" ).fadeOut(300);
+			i++;
+			console.log("removed " + (i-1));
+  		}
+  		console.log($("ul li").length)
+  	}, 30000);
+  }, 60000);
 }
+$(".addFriendsPopup").hide()
+$(".addFriends").click(function(){
+	$(".addFriendsPopup").show()
+	$(".closeBox").click(function(){
+		$(".addFriendsPopup").hide()
+	})
+})
 </script>

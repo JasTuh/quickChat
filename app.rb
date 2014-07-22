@@ -69,6 +69,7 @@ get '/conversation/:id' do
         @conversation = Conversation.find(params[:id])
         @a = UserConversation.where(conversation_id:params[:id])
         @users = []
+        session[:current_convo] = params[:id]
         @a.each do |u| 
             @users.push(u.user_id)
         end
@@ -125,10 +126,18 @@ end
 
 get '/delete/:id' do
 
-    # Conversation.destroy(params[:id])
+    Conversation.destroy(params[:id])
     a = UserConversation.where(conversation_id:params[:id])
     a.each do |n|
         UserConversation.destroy(n.id)
     end
     redirect '/'
+end
+
+post '/addFriend' do
+    a = User.find_by_username(params[:username])
+    if a 
+        UserConversation.create(user_id:a.id, conversation_id:session[:current_convo])
+    end
+    redirect "/conversation/#{session[:current_convo]}"
 end

@@ -101,10 +101,30 @@ body{
 	color: black;
 }
 .newConvo:hover{
-	text-decoration: underline;
+	position: fixed;
+	z-index: 2;
+	background-color: #27ae60;
+	padding: 2%;
+	top: 10%;
+	width: 10%;
+	right:0;
+	font-size: 96%;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
 }
-.logoutButtom:hover{
-	text-decoration: underline;	
+.logoutButton:hover{
+	position: fixed;
+	z-index: 2;
+	background-color: #27ae60;
+	padding: 2%;
+	top: 0;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
 }
 .formContainer{
 	position: absolute;
@@ -136,17 +156,42 @@ body{
 	z-index: 2;
 	background-color: #2ecc71;
 	padding: 2%;
-	top: 10%;
+	top: 0%;
 	width: 10%;
 	right:0;
 	border-radius: 18px;
 	text-align: center;
 	text-decoration: none;
 }
+.back:hover{
+	position: fixed;
+	z-index: 2;
+	background-color: #27ae60;
+	padding: 2%;
+	top: 0%;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+
 .registerButton{
 	position: fixed;
 	z-index: 2;
 	background-color: #2ecc71;
+	padding: 2%;
+	top: 0;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+.registerButton:hover{
+	position: fixed;
+	z-index: 2;
+	background-color: #27ae60;
 	padding: 2%;
 	top: 0;
 	width: 10%;
@@ -212,3 +257,42 @@ body{
 	position:relative;
 	top:1px;
 }
+ .addFriends{
+ 	position: fixed;
+	z-index: 2;
+	background-color: #2ecc71;
+	padding: 2%;
+	top: 10%;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+ }
+ .addFriends:hover{
+ 	position: fixed;
+	z-index: 2;
+	background-color: #27ae60;
+	padding: 2%;
+	top: 10%;
+	width: 10%;
+	right:0;
+	border-radius: 18px;
+	text-align: center;
+	text-decoration: none;
+ }
+ .addFriendsPopup{
+ 	width: 25%;
+ 	height:25%;
+ 	background-color: #9b59b6;
+ 	z-index: 3;
+ 	position: fixed;
+ 	left:37.5%;
+ 	top: 37.5%;
+ }
+ .closeBox{
+ 	
+ }
+ .closeBox:hover{
+ 	text-decoration: underline;
+ }
