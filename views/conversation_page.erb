@@ -2,19 +2,26 @@
     <div>
          <h1 class="mainTitle">Quick Chat!</h1>
 
-      <div class="newContainer"></div>
+      <div class="newConversationContainer"></div>
       <div class="formThing" style="position:absolute;">
          <h1 class="titleForm">New Conversation</h1>
-         <%=flash[:message]if flash[:message]%>
+         
 
          
-         <form id="form" method="POST" action="/addconvo" style="position:absolute;" class="convoForm">
-           <input type="text" name="title" placeholder="Title">
-           <input type="text" name="users" placeholder="Friends"><br><br>
+         <form method="POST" id="addFriendThing" action="/addconvo" style="position:absolute;" class="convoForm">
+           <label><%=flash[:message]if flash[:message]%><input type="text" name="title" placeholder="Title"></label>
+            <select name="username" form="addFriendThing"placeholder="Username" style="width:120px;border-radius:10px;">
+                  <option value="">Select A User!</option>
+              <% User.all.each do |t| %>
+                <% if t.id != session[:user_id] %> 
+                  <option value="<%=t.username%>"><%=t.username%></option>
+                <% end %>
+              <%end%>
+            </select>
+            <br><br>
            <input type="submit" class="submitBut">
          </form>
          
       </div>  
-      <a href="/"><div class="registerButton"> Back </div></a> <br><br>
     </div>
   </body>

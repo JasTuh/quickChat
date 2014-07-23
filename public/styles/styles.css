@@ -1,63 +1,63 @@
 #input {
-	position: fixed;
-	bottom: 0;
-	left:0;
-	height: 50px;
-	width: 95%;
+position: fixed;
+bottom: 0;
+left:0;
+height: 50px;
+width: 95%;
 }
 
 #inputButton{
-	position: fixed;
-	width: 5%;
-	right: 0;
-	bottom: 0;
-	height: 50px;
-	border-radius: 5px;
-	background-color: #3498db;
-	border-color: #3498db;
+position: fixed;
+width: 5%;
+right: 0;
+bottom: 0;
+height: 50px;
+border-radius: 5px;
+background-color: #3498db;
+border-color: #3498db;
 }
 
 #msgs{
-	line-height: 15pt;
+line-height: 15pt;
 }
 
 #title{
-	text-align: center;
-	font-size: 40pt;	
-	margin-bottom: 0px;
+text-align: center;
+font-size: 40pt;	
+margin-bottom: 0px;
 }
 body{
-	max-width: 100%;
+max-width: 100%;
 }
 
 .conversationsList{
-	text-align: center;
-	font-size: 15pt;
+text-align: center;
+font-size: 15pt;
 
 }
-
 .mainTitle{
-	font-size: 60pt;
+	font-size: 99pt;
 	text-align: center;
 	background-color: #e74c3c;
 	position: absolute;
 	width: 100%;
 	padding-top: 5%;
-	top: 0;
+	top: 0px;
+	padding-top: 150px;
+	padding-bottom: 150px;
 	margin-top: 0px;
 	right: 0%;
 	left:0%;
-	height: 17%;
+	height: 100px;
+	font-style: bold;
 }
 .spacer{
-	height: 17%;
+height: 400px;
 }
 .rest{
-	background-color: #3498db;
 	position: absolute;
 	width: 100%;
-	top: 20%;
-	height: 80%;
+	top: 400px;
 	left:0;
 }
 .listTitle{
@@ -67,74 +67,74 @@ body{
 	margin-bottom: 3%;
 }
 .listLink{
-	text-decoration: none;
-	color: black;
-	font-size: 30pt;
+text-decoration: none;
+color: black;
+font-size: 30pt;
 }
 .listLink:hover{
-	text-decoration: underline;
+text-decoration: underline;
 }
 .logoutButton{
-	position: fixed;
-	z-index: 2;
-	background-color: #2ecc71;
-	padding: 2%;
-	top: 0;
-	width: 10%;
-	right:0;
-	border-radius: 18px;
-	text-align: center;
-	text-decoration: none;
+position: fixed;
+z-index: 2;
+background-color: #2ecc71;
+padding: 2%;
+top: 0;
+width: 10%;
+right:0;
+border-radius: 18px;
+text-align: center;
+text-decoration: none;
 }
 .newConvo{
-	position: fixed;
-	z-index: 2;
-	background-color: #2ecc71;
-	padding: 2%;
-	top: 10%;
-	width: 10%;
-	right:0;
-	font-size: 96%;
-	border-radius: 18px;
-	text-align: center;
-	text-decoration: none;
-	color: black;
+position: fixed;
+z-index: 2;
+background-color: #2ecc71;
+padding: 2%;
+top: 10%;
+width: 10%;
+right:0;
+font-size: 96%;
+border-radius: 18px;
+text-align: center;
+text-decoration: none;
+color: black;
 }
 .newConvo:hover{
-	position: fixed;
-	z-index: 2;
-	background-color: #27ae60;
-	padding: 2%;
-	top: 10%;
-	width: 10%;
-	right:0;
-	font-size: 96%;
-	border-radius: 18px;
-	text-align: center;
-	text-decoration: none;
-	color: black;
+position: fixed;
+z-index: 2;
+background-color: #27ae60;
+padding: 2%;
+top: 10%;
+width: 10%;
+right:0;
+font-size: 96%;
+border-radius: 18px;
+text-align: center;
+text-decoration: none;
+color: black;
 }
 .logoutButton:hover{
-	position: fixed;
-	z-index: 2;
-	background-color: #27ae60;
-	padding: 2%;
-	top: 0;
-	width: 10%;
-	right:0;
-	border-radius: 18px;
-	text-align: center;
-	text-decoration: none;
+position: fixed;
+z-index: 2;
+background-color: #27ae60;
+padding: 2%;
+top: 0;
+width: 10%;
+right:0;
+border-radius: 18px;
+text-align: center;
+text-decoration: none;
 }
 .formContainer{
-	position: absolute;
-	top: 28%;
-	left:36%;
-	background-color: white;
-	width: 27%;
-	height: 30%;
-	border-radius: 10px;
-	opacity: 0.4;
+position: absolute;
+top: 28%;
+left:36%;
+background-color: white;
+width: 27%;
+height: 30%;
+border-radius: 10px;
+opacity: 0.4;
 }
 .formThing{
 	position: absolute;
@@ -143,25 +143,26 @@ body{
 	text-align: center;
 }
 .titleForm{
-	padding: 10%;
-	padding-top: 0;
+	position: absolute;
+	top: 85;
+	left:47;
 }
 /*.submitBut{
-	border-radius: 10px;
-	font-size: 15pt;
-	text-align: center;
+border-radius: 10px;
+font-size: 15pt;
+text-align: center;
 } */
 .back{
-	position: fixed;
-	z-index: 2;
-	background-color: #2ecc71;
-	padding: 2%;
-	top: 0%;
-	width: 10%;
-	right:0;
-	border-radius: 18px;
-	text-align: center;
-	text-decoration: none;
+position: fixed;
+z-index: 2;
+background-color: #2ecc71;
+padding: 2%;
+top: 0%;
+width: 10%;
+right:0;
+border-radius: 18px;
+text-align: center;
+text-decoration: none;
 }
 .back:hover{
 	position: fixed;
@@ -202,7 +203,7 @@ body{
 }
 .newContainer{
 	position: absolute;
-	top: 28%;
+	top: 40%;
 	left:38%;
 	background-color: white;
 	width: 27%;
@@ -211,7 +212,8 @@ body{
 	opacity: 0.4;	
 }
 .convoForm{
-	left:10%;
+	left:90;
+	top:190;
 }
 .submitBut {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -253,12 +255,13 @@ body{
 	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
 	background-color:#dfdfdf;
-}.submitBut:active {
+}
+.submitBut:active {
 	position:relative;
 	top:1px;
 }
- .addFriends{
- 	position: fixed;
+.addFriends{
+	position: fixed;
 	z-index: 2;
 	background-color: #2ecc71;
 	padding: 2%;
@@ -268,9 +271,9 @@ body{
 	border-radius: 18px;
 	text-align: center;
 	text-decoration: none;
- }
- .addFriends:hover{
- 	position: fixed;
+}
+.addFriends:hover{
+	position: fixed;
 	z-index: 2;
 	background-color: #27ae60;
 	padding: 2%;
@@ -280,19 +283,125 @@ body{
 	border-radius: 18px;
 	text-align: center;
 	text-decoration: none;
- }
- .addFriendsPopup{
- 	width: 25%;
- 	height:25%;
- 	background-color: #9b59b6;
- 	z-index: 3;
- 	position: fixed;
- 	left:37.5%;
- 	top: 37.5%;
- }
- .closeBox{
- 	
- }
- .closeBox:hover{
- 	text-decoration: underline;
- }
+}
+.addFriendsPopup{
+	width: 25%;
+	height:25%;
+	background-color: #9b59b6;
+	z-index: 3;
+	position: fixed;
+	left:37.5%;
+	top: 37.5%;
+}
+.closeBox{
+	
+}
+.closeBox:hover{
+	text-decoration: underline;
+}
+
+#navBar{
+	z-index: 2;
+	position: absolute;
+	width: 100%;
+	top:0;
+	background-color: #bdc3c7;
+	height: 36px;
+	font-size: 25pt;
+	left:0;
+	text-align: center;
+}
+.navBarElement{
+	width: 28%;
+	border-right: 1px solid black;
+	float: left;
+}
+.navBarElementLast{
+	width: 15%;
+	float: left;
+}
+.navBarElement:hover{
+	color:#1abc9c;
+}
+.navBarElementLast:hover{
+	color:#1abc9c;	
+}
+.navBarSpacer{
+	height: 50px;
+	width: 100%;
+}
+a:visited{
+	color: black;
+}
+a{
+	color: black;
+}
+.loginFormThing{
+	position: absolute;
+	left:39%;
+	top:50%;
+	text-align: center;
+}
+.loginformContainer{
+	position: absolute;
+	top: 50%;
+	left:36%;
+	background-color: white;
+	width: 338px;
+	height: 30%;
+	border-radius: 10px;
+	opacity: 0.4;
+}
+.registerformContainer{
+	position: absolute;
+	top: 50%;
+	left:36%;
+	background-color: white;
+	width: 333px;
+	height: 30%;
+	border-radius: 10px;
+	opacity: 0.4;
+}
+.registerformThing{
+	position: absolute;
+	top: 56%;
+	left:39%;
+	text-align: center;
+}
+.mainTitleSmall{
+	font-size: 50pt;
+	text-align: center;
+	background-color: #e74c3c;
+	position: absolute;
+	width: 100%;
+	padding-top: 5%;
+	top: 0px;
+	padding-top: 90px;
+	margin-top: 0px;
+	right: 0%;
+	left:0%;
+	height: 100px;
+	font-style: bold;
+}
+.restSmall{
+	position: absolute;
+	width: 100%;
+	top: 200px;
+	left:0;
+}
+.listTitleSmall{
+	text-align: center;
+	font-size: 40pt;
+	line-height: 10px;
+	margin-bottom: 0%;	
+}
+.newConversationContainer{
+	position: absolute;
+	top: 40%;
+	left:38%;
+	background-color: white;
+	width: 340px;
+	height: 40%;
+	border-radius: 10px;
+	opacity: 0.4;
+}

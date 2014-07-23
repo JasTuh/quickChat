@@ -1,12 +1,12 @@
 
-  <body>
+  <body style="background-color:#3498db;">
       <%=flash[:message]if flash[:message]%>
-     <h1 class="mainTitle">Quick Chat!</h1>
+     <h1 class="mainTitle"><b>Quick Chat!</b></h1>
      <div class="spacer"></div>
      <div class="rest">
        <h3 class="listTitle">Conversations: </h3>
        <div class="conversationsList">
-         <% for c in @conversations %>
+         <% for c in @conversations.reverse %>
             <% if c != nil %>
               <a class="listLink" href="/conversation/<%=c.conversation_id%>">
                 <%=Conversation.find(c.conversation_id).title%> <a href="/delete/<%=c.conversation_id%>">Delete</a>
@@ -15,9 +15,6 @@
             <%end%>
          <%end %>
         </div>
-          <a href="/logout" style="color:black;"><div class="logoutButton" >logout</div></a>
-
-       <a class="newConvo" href="/new-convo"> New Conversation</a>
      </div>
   </body>
 

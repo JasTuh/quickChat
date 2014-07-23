@@ -6,6 +6,13 @@
 	</head>
 	<body>
 		<% if session[:user_id] != nil %>
+			<div id="navBar">
+				<a href="/"><div class="navBarElement"> Home </div></a>
+				<a href="/new-convo"><div class="navBarElement"> New Conversation </div></a>
+				<a href="/listOthers"><div class="navBarElement"> Other Users </div></a>
+				<a href="/logout"><div class="navBarElementLast"> Sign Out </div></a>
+			</div>
+			<div class="navBarSpacer"></div>
 		<%end%>
 		<%=yield%>
 	</body>

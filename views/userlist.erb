@@ -1,0 +1,26 @@
+
+<body style="background-color:#3498db;">
+    <%=flash[:message]if flash[:message]%>
+   <h1 class="mainTitleSmall"><b>Quick Chat!</b></h1>
+   <div class="spacer"></div>
+   <div class="restSmall">
+     <h3 class="listTitleSmall">Users: <br></br>
+     <%if flash[:message]%>
+        <br><br><br><br>
+        <%=flash[:message]%>
+        <br><br><br>
+     <%end%></br> <form action="/search" style="margin-bottom:0"method="POST"> <input type="text" style="width:200px; border-radius:25px; height:29px;"placeholder="search" name="search"> </form></h3> 
+     <br>
+     <div class="conversationsList">
+       <% @alreadyPrinted = [] 
+          for c in @users.reverse %>
+          <% if c != nil && c.id != session[:user_id] and ! @alreadyPrinted.include? c 
+               @alreadyPrinted.push(c)%>
+            <h2><%=c.fname%> <%=c.lname%> (<%=c.username%>)</h2>
+            <a href="/makeConversation/<%=c.id%>"> Start a conversation! </a>
+            <hr>
+          <%end%>
+       <%end%>
+      </div>
+   </div>
+</body>

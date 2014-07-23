@@ -1,4 +1,4 @@
-require "sinatra"
+    require "sinatra"
 require "sinatra/activerecord"
 require 'sinatra-websocket' 
 
@@ -32,9 +32,9 @@ get '/register' do
     erb :register
 end
 post '/register-validation' do
-    @user = User.find_by_username params[:username]
+    @user = User.find_by_username(params[:username])
     if !@user && params[:password] == params[:cpassword]
-        User.create(username:params[:username], email:params[:email], password:params[:password])
+        User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
         @user = User.find_by_username params[:username]
         session[:user_id] = @user.id
         redirect '/'
@@ -51,17 +51,27 @@ get '/new-convo' do
 
     erb :conversation_page
 end
-post '/addconvo' do 
-    users = params[:users].split(",")
-    @conversation = Conversation.create(title:params[:title])
-    UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
-    users.each do |n| 
-        curUser = User.find_by_username(n)
-        if curUser
-            UserConversation.create(user_id:curUser.id, conversation_id:@conversation.id)
+post '/addconvo' do
+
+    if (params[:title] == "")
+        flash[:message] = "Title cannot be blank"
+        erb :conversation_page
+    elsif params[:username] == ""
+        flash[:message] = "Please Select A User"
+        erb :conversation_page
+    else
+        user = User.find_by_username(params[:username])
+        if (user)
+            puts "HELLO"
+            puts user
+            @conversation = Conversation.create(title:params[:title])
+            UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
+            UserConversation.create(user_id:user.id, conversation_id:@conversation.id)
+            redirect "/conversation/#{@conversation.id}"
+        else
+            erb :conversation_page
         end
     end
-    redirect "/conversation/#{@conversation.id}"
 end
 
 get '/conversation/:id' do
@@ -125,13 +135,24 @@ post '/login-validation' do
 end
 
 get '/delete/:id' do
-
-    Conversation.destroy(params[:id])
-    a = UserConversation.where(conversation_id:params[:id])
-    a.each do |n|
-        UserConversation.destroy(n.id)
+    b = UserConversation.where(user_id:session[:user_id])
+    included = false
+    b.each do |c| 
+        if c.conversation_id == params[:id]
+            included = true
+        end
     end
-    redirect '/'
+    if !included 
+        redirect '/'
+    else
+        Conversation.destroy(params[:id])
+        a = Message.where(conversation_id:params[:id])
+        a = UserConversation.where(conversation_id:params[:id])
+        a.each do |n|
+            UserConversation.destroy(n.id)
+        end
+        redirect '/'
+    end
 end
 
 post '/addFriend' do
@@ -140,4 +161,39 @@ post '/addFriend' do
         UserConversation.create(user_id:a.id, conversation_id:session[:current_convo])
     end
     redirect "/conversation/#{session[:current_convo]}"
+end
+
+get '/listOthers' do
+    @users = User.all()
+    erb :userlist
+end
+
+
+get '/makeConversation/:id' do
+    @conversation = Conversation.create(title:"Hello!")
+    UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)    
+    UserConversation.create(user_id:params[:id], conversation_id:@conversation.id)
+    redirect "/conversation/#{@conversation.id}"
+end
+post '/search' do
+    @users = []
+    @users.push(User.find_by_username(params[:search]))
+    @users.push(User.find_by_fname(params[:search]))
+    @users.push(User.find_by_lname(params[:search]))
+    @users.push(User.find_by_fname(params[:search].capitalize))
+    @users.push(User.find_by_lname(params[:search].capitalize))
+    @users.push(User.find_by_email(params[:search]))
+    b = true
+    @users.each do |t|
+        if t != nil
+            b = false
+        end
+    end
+    if @users == [] || b
+        @users = User.all()
+        flash[:message] = "No Users Were Found with \"#{params[:search]}\""
+        erb :userlist
+    else
+        erb :userlist
+    end
 end

@@ -1,27 +1,24 @@
 
-  <body style="background-color:#e74c3c;">
-    <div>
-         <h1 class="mainTitle">Quick Chat!</h1>
+<body style="background-color:#e74c3c;">
+  <div>
+       <h1 class="mainTitle">Quick Chat!</h1>
 
-      <div class="formContainer"></div>
-      <div class="formThing" style="position:absolute;">
-         <h1 class="titleForm" style="margin-bottom:0">Login</h1>
-         <%=flash[:message]if flash[:message]%>
-         <form id="form" method="POST" action="/register-validation">
-            <input type="text" name="fname" placeholder="First Name">
-            <input type="text" name="lname" placeholder="Last Name">
-            <br>
-            <input type="text" name="username" placeholder="Username">
-            <input type="email" name="email" placeholder="email">
-            <br>
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="cpassword" placeholder="Confirm Password">
-            <br><br>
-           <input type="submit" class="submitBut">
-         </form>
-        
-      </div>
-      <a href="/"><div class="registerButton"> Back </div></a> <br><br>
+    <div class="registerformContainer"></div>
+    <div class="registerformThing" style="position:absolute;">
+       <%=flash[:message]if flash[:message]%>
+       <form id="form" method="POST" action="/register-validation">
+          <input required type="text" name="fname" placeholder="First Name">
+          <input required type="text" name="lname" placeholder="Last Name">
+          <br>
+          <input required type="text" maxlength="13" name="username" placeholder="Username">
+          <input required type="email" name="email" placeholder="email">
+          <br>
+          <input required type="password" name="password" placeholder="Password">
+          <input required type="password" name="cpassword" placeholder="Confirm Password">
+          <br><br>
+         <input type="submit" class="submitBut">
+       </form>
+      
     </div>
-  </body>
-  
+  </div>
+</body>

@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140721153830) do
     t.string "username"
     t.string "email"
     t.string "password"
+    t.string "fname"
+    t.string "lname"
   end
 
 end

@@ -1,10 +1,9 @@
 
 <body>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
-	<a href="/" style="color:black;"><div class="back" >back</div></a>
-	<div class="addFriends" >Add Friends</div>
+	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
-		<h1 id="title">Title: <%=@conversation.title%></h1>
+		<h1 id="title"><%=@conversation.title%></h1>
 		<%=flash[:message]if flash[:message]%>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
@@ -17,10 +16,10 @@
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
-		 	if (time1.utc) < (m.created+60)%>
+		 	if (time1.utc) < (m.created+120)%>
 				<li><%=m.content%></li>
-				<%if i != @messages.length - 1 %>
-				<%end%>
+			<%else
+			  	Message.destroy(m)%>
 			<%end%>
 		<% i+=1 %>
 		<%end%>
@@ -37,8 +36,17 @@
 				<%=User.find(t).username %> &nbsp;
 			<%end%>
 		</p>
-		<form action="/addFriend" method="POST" style="position:absolute; top:55%; left:20%">
-			<label for="Username">Username:<input type="text" name="username" placeholder="Username"></label>
+		<form id="addFriendThing" action="/addFriend" method="POST" style="position:absolute; top:55%; left:20%">
+			<label for="Username">Username:
+				<select name="username" form="addFriendThing"placeholder="Username" style="max-width:120px">
+					<% User.all.each do |t| %>
+						<% if !@users.include? t.id %>
+							<option value="<%=t.username%>"><%=t.username%></option>
+						<%end%>
+					<%end%>
+				</select>
+			</label>
+			<input type="submit">
 		</form>
 		<br><br>
 		<p class="closeBox">close</p>
@@ -72,18 +80,6 @@ window.onload = function(){
       }
     }(document.getElementById('form'));
   })();
-  setTimeout(function(){
-  	i = 1;
-  	console.log("HELLO");
-  	setInterval(function(){
-  		if (i < ($("ul li").length+1)){
-  			$( "ul li:nth-child("+i+")" ).fadeOut(300);
-			i++;
-			console.log("removed " + (i-1));
-  		}
-  		console.log($("ul li").length)
-  	}, 30000);
-  }, 60000);
 }
 $(".addFriendsPopup").hide()
 $(".addFriends").click(function(){
