@@ -138,9 +138,11 @@ get '/delete/:id' do
     b = UserConversation.where(user_id:session[:user_id])
     included = false
     b.each do |c| 
-        if c.conversation_id == params[:id]
+        if "#{c.conversation_id}" == params[:id]
             included = true
+            puts "this should print"
         end
+        puts "conversation id = #{c.conversation_id} and params[:id] = #{params[:id]}"
     end
     if !included 
         redirect '/'
