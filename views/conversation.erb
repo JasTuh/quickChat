@@ -1,5 +1,5 @@
 
-<body>
+<body style="">
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
@@ -12,12 +12,12 @@
                    %>
 	<% end %>
 
-	<ul id="msgs" style="list-style-type:none">
+	<ul id="msgs" style="list-style-type:none;">
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
 		 	if (time1.utc) < (m.created+120)%>
-				<li><%=m.content%></li>
+				<li class="message"><%=m.content%></li>
 			<%else
 			  	Message.destroy(m)%>
 			<%end%>
@@ -26,7 +26,7 @@
 	</ul>
 	<br><br><br><br>
 	<form id="form">
-		<input type="text" id="input" value="send a message"></input>
+		<input type="text" id="input" value="send a message" class="sendAMessage"style=""></input>
 		<input type="submit" id="inputButton" value="send">
 	</form>
 	<div class="addFriendsPopup">
@@ -36,7 +36,7 @@
 				<%=User.find(t).username %> &nbsp;
 			<%end%>
 		</p>
-		<form id="addFriendThing" action="/addFriend" method="POST" style="position:absolute; top:55%; left:20%">
+		<form id="addFriendThing" action="/addFriend" method="POST" style="position:absolute; top:55%; left:20%; ">
 			<label for="Username">Username:
 				<select name="username" form="addFriendThing"placeholder="Username" style="max-width:120px">
 					<% User.all.each do |t| %>
@@ -58,7 +58,7 @@ window.onload = function(){
 
   (function(){
     var show = function(el){
-      return function(msg){ el.innerHTML =el.innerHTML + '<li>' +  msg  + '</li>'}
+      return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  msg  + '</li>'}
     }(document.getElementById('msgs'));
 
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);

@@ -1,38 +1,44 @@
 #input {
-position: fixed;
-bottom: 0;
-left:0;
-height: 50px;
-width: 95%;
+	position: fixed;
+	bottom: 0;
+	left:0;
+	height: 50px;
+	width: 95%;
 }
-
+.message{
+	font-size: 15pt;
+	width: 100%;
+}
+.message:nth-child(odd){
+	background-color:#bdc3c7;
+}
 #inputButton{
-position: fixed;
-width: 5%;
-right: 0;
-bottom: 0;
-height: 50px;
-border-radius: 5px;
-background-color: #3498db;
-border-color: #3498db;
+	position: fixed;
+	width: 5%;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+	border-radius: 5px;
+	background-color: #3498db;
+	border-color: #3498db;
 }
 
 #msgs{
-line-height: 15pt;
+	line-height: 15pt;
 }
 
 #title{
-text-align: center;
-font-size: 40pt;	
-margin-bottom: 0px;
+	text-align: center;
+	font-size: 40pt;	
+	margin-bottom: 0px;
 }
 body{
-max-width: 100%;
+	max-width: 100%;
 }
 
 .conversationsList{
-text-align: center;
-font-size: 15pt;
+	text-align: center;
+	font-size: 15pt;
 
 }
 .mainTitle{
@@ -306,7 +312,7 @@ text-decoration: none;
 	width: 100%;
 	top:0;
 	background-color: #bdc3c7;
-	height: 36px;
+	height: 45px;
 	font-size: 25pt;
 	left:0;
 	text-align: center;
@@ -315,10 +321,14 @@ text-decoration: none;
 	width: 28%;
 	border-right: 1px solid black;
 	float: left;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
 }
 .navBarElementLast{
 	width: 15%;
 	float: left;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
 }
 .navBarElement:hover{
 	color:#1abc9c;
@@ -380,13 +390,13 @@ a{
 	margin-top: 0px;
 	right: 0%;
 	left:0%;
-	height: 100px;
+	height: 150px;
 	font-style: bold;
 }
 .restSmall{
 	position: absolute;
 	width: 100%;
-	top: 200px;
+	top: 250px;
 	left:0;
 }
 .listTitleSmall{
@@ -404,4 +414,13 @@ a{
 	height: 40%;
 	border-radius: 10px;
 	opacity: 0.4;
+}
+.sendAMessage{
+	background-color:; 
+	border:0;
+}
+.sendAMessage:focus{
+	background: gray;
+	/*background-color:#e74c3c; 
+	border:0;*/
 }
