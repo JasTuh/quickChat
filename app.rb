@@ -150,9 +150,7 @@ get '/delete/:id' do
         Conversation.destroy(params[:id])
         a = Message.where(conversation_id:params[:id])
         a = UserConversation.where(conversation_id:params[:id])
-        a.each do |n|
-            UserConversation.destroy(n.id)
-        end
+        
         redirect '/'
     end
 end

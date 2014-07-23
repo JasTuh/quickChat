@@ -7,10 +7,10 @@
 	<body>
 		<% if session[:user_id] != nil %>
 			<div id="navBar">
-				<a href="/"><div class="navBarElement"> Home </div></a>
-				<a href="/new-convo"><div class="navBarElement"> New Conversation </div></a>
-				<a href="/listOthers" style="top:50%;"><div class="navBarElement"> Other Users </div></a>
-				<a href="/logout"><div class="navBarElementLast"> Sign Out </div></a>
+				<a href="/"><div class="navBarElement one"> Home </div></a>
+				<a href="/new-convo"><div class="navBarElement two"> New Conversation </div></a>
+				<a href="/listOthers" style="top:50%;"><div class="navBarElement three"> Other Users </div></a>
+				<a href="/logout"><div class="navBarElementLast four"> Sign Out </div></a>
 			</div>
 			<div class="navBarSpacer"></div>
 		<%end%>
