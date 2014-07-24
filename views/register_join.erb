@@ -1,10 +1,13 @@
 
 <body style="background-color:#e74c3c;">
   <div>
-       <h1 class="mainTitle">Quick Chat!</h1>
+       <h1 class="mainTitleReg">Quick Chat!</h1>
+       <h2 class="subTitle"> First register then you can join the conversation!</h2>
     <div class="registerformContainer"></div>
+
     <div class="registerformThing" style="position:absolute;">
        <%=flash[:message]if flash[:message]%>
+
        <form id="form" method="POST" action="/register-validation-join">
           <input required type="text" name="fname" placeholder="First Name">
           <input required type="text" name="lname" placeholder="Last Name">
