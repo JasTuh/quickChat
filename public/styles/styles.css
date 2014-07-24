@@ -8,9 +8,8 @@
 .message{
 	font-size: 15pt;
 	width: 100%;
-}
-.message:nth-child(odd){
-	background-color:#bdc3c7;
+	line-height: 22pt;
+	margin-left: 0;
 }
 #inputButton{
 	position: fixed;
@@ -24,7 +23,9 @@
 }
 
 #msgs{
-	line-height: 15pt;
+	list-style-type:none; 
+	margin-left:0;
+	padding-left:0
 }
 
 #title{
@@ -420,7 +421,8 @@ a{
 	border:0;
 }
 .sendAMessage:focus{
-	background: gray;
+	background: #dddddd;
+	outline: none;
 	/*background-color:#e74c3c; 
 	border:0;*/
 }
@@ -467,4 +469,17 @@ a{
 }
 .description{
 	font-size: 15pt;
+}
+.hide{
+	font-size:17pt;
+}
+
+.hide:hover{
+	text-decoration: underline;
+}
+.showShareFriends{
+	font-size: 12pt
+}
+.showShareFriends:hover{
+	text-decoration: underline;
 }

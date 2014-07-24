@@ -1,13 +1,12 @@
 
 <body style="">
-
-	<script src="../styles/jquery.js"></script>
 	<script type="text/javascript">var timeAr = []</script>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title"><%=@conversation.title%></h1>
-		<h5 style="text-align:center"><p>Copy this link to share to friends: <br>quick-chat.herokuapp.com/join?id=<%=@conversation.id%>&ksy=<%=@conversation.secret%></p></h5>
+		<h5 class="shareFriends" style="text-align:center; font-size:15pt"><p>Copy this link to share to friends: <br>quick-chat.herokuapp.com/join?id=<%=@conversation.id%>&ksy=<%=@conversation.secret%> <br><span class="hide"> hide </span></p></h5>
+		<h5 style="text-align:center; font-size:15pt" class="showShareFriends">Show Sharing Link</h5>
 		<%=flash[:message]if flash[:message]%>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
@@ -18,7 +17,7 @@
 	<div class="shareLink">
 		
 	</div>
-	<ul id="msgs" style="list-style-type:none;">
+	<ul id="msgs">
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
@@ -30,6 +29,7 @@
    						b = new Date(+a + <%(@conversation.time*1000)%>)
       					timeAr.push(b)
 					</script>
+					<hr style="width:100%; margin-left:0">
 				</li>
 				
 			<%else
@@ -72,7 +72,7 @@
   (function(){
     var show = function(el){
       return function(msg){ 
-      	el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '</li>';
+      	el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '<hr style="width:100%; margin-left:0"></li> ';
       	a = new Date()
    		b = new Date(+a + <%=(@conversation.time*1000)%>)
       	timeAr.push(b)
@@ -112,11 +112,20 @@
   })();
 }
 $(".addFriendsPopup").hide()
+$(".showShareFriends").hide()
 $(".addFriends").click(function(){
   $(".addFriendsPopup").show()
   $(".closeBox").click(function(){
     $(".addFriendsPopup").hide()
   })
+})
+$(".hide").click(function(){
+	$(".shareFriends").hide()
+	$(".showShareFriends").show()
+})
+$(".showShareFriends").click(function(){
+	$(".showShareFriends").hide()	
+	$(".shareFriends").show()
 })
 console.log(timeAr)
 setInterval(function(){
