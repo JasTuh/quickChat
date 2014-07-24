@@ -424,3 +424,9 @@ a{
 	/*background-color:#e74c3c; 
 	border:0;*/
 }
+.shareLink{
+	position: absolute;
+	left:0;
+	top: 50;
+
+}

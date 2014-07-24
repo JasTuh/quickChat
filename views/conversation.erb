@@ -4,6 +4,7 @@
 	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title"><%=@conversation.title%></h1>
+		<h5 style="text-align:center"><p>Copy this link and share to friends! <br>quick-chat.com/join?id=<%=@conversation.id%>&ksy=<%=@conversation.secret%></p></h5>
 		<%=flash[:message]if flash[:message]%>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
@@ -11,7 +12,9 @@
                    redirect '/' 
                    %>
 	<% end %>
-
+	<div class="shareLink">
+		
+	</div>
 	<ul id="msgs" style="list-style-type:none;">
 		<%i = 0
 		for m in @messages%>
@@ -52,15 +55,13 @@
 		<p class="closeBox">close</p>
 	</div>
 </body>
+ 
 <script type="text/javascript">
-window.onload = function(){
-
-
+ window.onload = function(){
   (function(){
     var show = function(el){
       return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  msg  + '</li>'}
     }(document.getElementById('msgs'));
-
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
     // ws.onopen    = function()  { show('websocket opened'); };
     // ws.onclose   = function()  { show('websocket closed'); }
@@ -83,9 +84,10 @@ window.onload = function(){
 }
 $(".addFriendsPopup").hide()
 $(".addFriends").click(function(){
-	$(".addFriendsPopup").show()
-	$(".closeBox").click(function(){
-		$(".addFriendsPopup").hide()
-	})
+  $(".addFriendsPopup").show()
+  $(".closeBox").click(function(){
+    $(".addFriendsPopup").hide()
+  })
 })
 </script>
+

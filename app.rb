@@ -1,4 +1,4 @@
-    require "sinatra"
+require "sinatra"
 require "sinatra/activerecord"
 require 'sinatra-websocket' 
 
@@ -12,7 +12,6 @@ set :sessions, true
 use Rack::Flash, :sweep => true
 set :server, 'thin'
 set :sockets, []
-usernameTMP = ""
 
 get '/' do
     if (session[:user_id] == nil)
@@ -34,9 +33,9 @@ end
 post '/register-validation' do
     @user = User.find_by_username(params[:username])
     if !@user && params[:password] == params[:cpassword]
-        User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
+        a = User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
         @user = User.find_by_username params[:username]
-        session[:user_id] = @user.id
+        session[:user_id] = a.id
         redirect '/'
     end
     if @user
@@ -48,30 +47,90 @@ post '/register-validation' do
 end
 
 get '/new-convo' do
-
     erb :conversation_page
 end
 post '/addconvo' do
-
+    puts "ADD CONVO"
     if (params[:title] == "")
         flash[:message] = "Title cannot be blank"
         erb :conversation_page
     elsif params[:username] == ""
         flash[:message] = "Please Select A User"
         erb :conversation_page
+    elsif params[:username] == "noone"
+        o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+        string = (0...50).map { o[rand(o.length)] }.join
+        @conversation = Conversation.create(title:params[:title], secret:string)
+        UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
+        redirect "/conversation/#{@conversation.id}"
     else
         user = User.find_by_username(params[:username])
+        user2= User.find(session[:user_id])
         if (user)
-            puts "HELLO"
-            puts user
-            @conversation = Conversation.create(title:params[:title])
-            UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
+            o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+            string = (0...50).map { o[rand(o.length)] }.join
+            @conversation = Conversation.create(title:params[:title], secret:string)
+            UserConversation.create(user_id:user2.id, conversation_id:@conversation.id)
             UserConversation.create(user_id:user.id, conversation_id:@conversation.id)
             redirect "/conversation/#{@conversation.id}"
         else
             erb :conversation_page
         end
     end
+end
+
+get '/join' do
+    id = params[:id]
+    puts "in join"
+    secret = params[:ksy]
+    session[:join_url] = "/join?id=#{id}&ksy=#{secret}"
+    if session[:user_id] == nil
+        erb :login_join
+    else
+        @conversation=Conversation.find(id)
+        puts "#{@conversation.secret} = #{secret}"
+        if @conversation.secret == secret
+            puts "ALMOST THERE BUD"
+        end
+        if @conversation && @conversation.secret == secret
+            a = UserConversation.where(user_id:session[:user_id], conversation_id:@conversation.id)
+            puts "a!!!"
+            puts a
+            if a.blank?
+                puts "HELLO"
+                UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
+            end
+            redirect "/conversation/#{@conversation.id}"
+        end
+    end
+end
+post '/login-validation-join' do
+    @user = User.find_by_username params[:username]
+    if @user && @user.password == params[:password]
+        session[:user_id] = @user.id
+        redirect session[:join_url]
+    else
+        flash[:message] = "Try again"
+        erb :login_join
+    end
+end
+get '/register-join' do
+    erb :register_join
+end
+post '/register-validation-join' do
+    @user = User.find_by_username(params[:username])
+    if !@user && params[:password] == params[:cpassword]
+        User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
+        @user = User.find_by_username params[:username]
+        session[:user_id] = @user.id
+        redirect session[:join_url]
+    end
+    if @user
+        flash[:message] = "Username is already taken."
+    else 
+        flash[:message] = "Passwords do not match."
+    end
+    redirect '/register-join'
 end
 
 get '/conversation/:id' do
@@ -83,7 +142,6 @@ get '/conversation/:id' do
         @a.each do |u| 
             @users.push(u.user_id)
         end
-        usernameTMP = User.find(session[:user_id]).username
         @messages = Message.where(conversation_id:params[:id])
         erb :conversation
     else
@@ -124,9 +182,12 @@ get '/conversation/:id' do
 end
 
 post '/login-validation' do
+    puts "VALIDATING YOUR LOGIN"
     @user = User.find_by_username params[:username]
     if @user && @user.password == params[:password]
         session[:user_id] = @user.id
+        puts "IS IT NIL?"
+        puts session[:user_id]
         redirect '/'
     else
         flash[:message] = "Try again"

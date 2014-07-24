@@ -1,0 +1,23 @@
+
+<body style="background-color:#e74c3c;">
+  <div>
+       <h1 class="mainTitle">Quick Chat!</h1>
+    <div class="registerformContainer"></div>
+    <div class="registerformThing" style="position:absolute;">
+       <%=flash[:message]if flash[:message]%>
+       <form id="form" method="POST" action="/register-validation-join">
+          <input required type="text" name="fname" placeholder="First Name">
+          <input required type="text" name="lname" placeholder="Last Name">
+          <br>
+          <input required type="text" maxlength="13" name="username" placeholder="Username">
+          <input required type="email" name="email" placeholder="email">
+          <br>
+          <input required type="password" name="password" placeholder="Password">
+          <input required type="password" name="cpassword" placeholder="Confirm Password">
+          <br><br>
+         <input type="submit" class="submitBut">
+       </form>
+      
+    </div>
+  </div>
+</body>
