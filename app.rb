@@ -231,7 +231,9 @@ end
 
 
 get '/makeConversation/:id' do
-    @conversation = Conversation.create(title:"Hello!")
+    o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    string = (0...50).map { o[rand(o.length)] }.join
+    @conversation = Conversation.create(title:"Hello!", secret:string)
     UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)    
     UserConversation.create(user_id:params[:id], conversation_id:@conversation.id)
     redirect "/conversation/#{@conversation.id}"
