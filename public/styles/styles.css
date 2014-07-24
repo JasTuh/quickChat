@@ -308,7 +308,7 @@ text-decoration: none;
 
 #navBar{
 	z-index: 2;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	top:0;
 	background-color: #bdc3c7;

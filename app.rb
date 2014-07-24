@@ -52,10 +52,9 @@ get '/new-convo' do
     erb :conversation_page
 end
 post '/addconvo' do
-    puts "ADD CONVO"
     timeTo = params[:timeSec].to_i
-    if (timeTo <= 0)
-        timeTo = 1
+    if (timeTo < 1)
+        timeTo = 5
     end
     if (params[:title] == "")
         flash[:message] = "Title cannot be blank"
@@ -232,7 +231,7 @@ end
 get '/makeConversation/:id' do
     o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     string = (0...50).map { o[rand(o.length)] }.join
-    @conversation = Conversation.create(title:"Hello!", secret:string)
+    @conversation = Conversation.create(title:"Hello!", secret:string, time:60)
     UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)    
     UserConversation.create(user_id:params[:id], conversation_id:@conversation.id)
     redirect "/conversation/#{@conversation.id}"
