@@ -63,8 +63,8 @@
       return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '</li>'}
     }(document.getElementById('msgs'));
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
-    // ws.onopen    = function()  { show('websocket opened'); };
-    // ws.onclose   = function()  { show('websocket closed'); }
+    ws.onopen    = function()  { ws.send("entered the chatroom." + "," + <%=session[:user_id]%>); };
+    ws.onclose   = function()  { ws.send("left the chatroom." + "," + <%=session[:user_id]%>); }
     ws.onmessage = function(m) { 
     	show(m.data); 
         window.scroll(0, document.documentElement.offsetHeight);

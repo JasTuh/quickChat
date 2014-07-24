@@ -170,9 +170,8 @@ get '/conversation/:id' do
                         a = Message.create(content:content, conversation_id:cID, created:time1);
                         EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
                     end
-                end
-                ws.onclose do
-                    Sock.destroy(sk)
+                    ws.onclose do
+                    end
                 end
             end             
         end
