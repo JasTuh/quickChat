@@ -1,5 +1,7 @@
 
 <body style="">
+	<script src="../styles/jquery.js"></script>
+	<script type="text/javascript">var timeAr = []</script>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
@@ -19,8 +21,16 @@
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
-		 	if (time1.utc) < (m.created+120)%>
-				<li class="message"><%=m.content%></li>
+		 	if (time1.utc) < (m.created+(@conversation.time*1000))%>
+				<li class="message">
+					<%=m.content%>
+					<script type="text/javascript">
+						a = new Date()
+   						b = new Date(+a + <%(@conversation.time*1000)%>)
+      					timeAr.push(b)
+					</script>
+				</li>
+				
 			<%else
 			  	Message.destroy(m)%>
 			<%end%>
@@ -60,11 +70,17 @@
  window.onload = function(){
   (function(){
     var show = function(el){
-      return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '</li>'}
+      return function(msg){ 
+      	el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '</li>';
+      	a = new Date()
+   		b = new Date(+a + <%=(@conversation.time*1000)%>)
+      	timeAr.push(b)
+      	console.log("is it happening?")
+     }
     }(document.getElementById('msgs'));
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
     ws.onopen    = function()  { ws.send("entered the chatroom." + "," + <%=session[:user_id]%>); };
-    ws.onclose   = function()  { ws.send("left the chatroom." + "," + <%=session[:user_id]%>); }
+    // ws.onclose   = function()  { ws.send("left the chatroom." + "," + <%=session[:user_id]%>); }
     ws.onmessage = function(m) { 
     	show(m.data); 
         window.scroll(0, document.documentElement.offsetHeight);
@@ -101,5 +117,15 @@ $(".addFriends").click(function(){
     $(".addFriendsPopup").hide()
   })
 })
+console.log(timeAr)
+setInterval(function(){
+	$(".message").each(function(index){
+		d = timeAr[index]
+		e = new Date()
+		if (e > d){
+			$(this).fadeOut(2000);
+		}
+	})
+}, 100)
 </script>
 

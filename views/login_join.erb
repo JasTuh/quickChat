@@ -1,18 +1,21 @@
+  <body style="background-color:#e74c3c;">
+    <div>
+         <h1 style="font-size:100pt;text-align:center; margin-top:50px;">Quick Chat!</h1>
 
-<body style="background-color:#e74c3c;">
-  <div>
-       <h1 class="mainTitleReg">Quick Chat!</h1>
-       <h2 class="subTitle"> First log in then you can join the conversation!</h2>
-
-    <div class="loginFormThing" style="position:absolute;">
-       <h1 class="titleLoginForm">Login</h1>
-       <%=flash[:message]if flash[:message]%>
-       <form id="form" method="POST" action="/login-validation-join" class="loginForm">
-         <input type="text" name="username" placeholder="Username">
-         <input type="password" name="password" placeholder="Password"><br><br>
-         <input type="submit" class="submitBut">
-       </form>
-       <a href="/register-join">Make an account! </a>
+      <center><div style="background-color:#F0938A;text-align:center;  width: 50%; border-radius:20px;">
+      <br>
+         <h1 style="text-align:center;">Login</h1>
+         <%=flash[:message]if flash[:message]%>
+         
+         <form id="form" method="POST" style="" action="/login-validation-join">
+           <input style="width:50%; height:50px; font-size:12.5pt; text-align:center" type="text" name="username" placeholder="Username"><br>
+           <input style="width:50%; height:50px; font-size:12.5pt; text-align:center" type="password" name="password" placeholder="Password"><br><br>
+           <input type="submit" class="submitBut" style="height:50px;">
+         </form>
+         
+         <center><a href="/register-join">Make an account! </a></center>
+         <br><br>
+      </div></center>
     </div>
-  </div>
-</body>
+  </body>
+  

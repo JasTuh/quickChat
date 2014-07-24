@@ -1,26 +1,24 @@
-
 <body style="background-color:#e74c3c;">
   <div>
-       <h1 class="mainTitleReg">Quick Chat!</h1>
-       <h2 class="subTitle"> First register then you can join the conversation!</h2>
+       <h1 style="font-size:100pt;text-align:center; margin-top:50px;">Quick Chat!</h1>
 
-
-    <div class="registerformThing" style="position:absolute;">
+    <center><div style="background-color:#F0938A;text-align:center;  width: 50%; border-radius:20px;">
+       
+       <br><h1 style="text-align:center;">Register</h1>
        <%=flash[:message]if flash[:message]%>
-
        <form id="form" method="POST" action="/register-validation-join">
-          <input required type="text" name="fname" placeholder="First Name">
-          <input required type="text" name="lname" placeholder="Last Name">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="text" name="fname" placeholder="First Name">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="text" name="lname" placeholder="Last Name">
           <br>
-          <input required type="text" maxlength="13" name="username" placeholder="Username">
-          <input required type="email" name="email" placeholder="email">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="text" maxlength="13" name="username" placeholder="Username">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="email" name="email" placeholder="email">
           <br>
-          <input required type="password" name="password" placeholder="Password">
-          <input required type="password" name="cpassword" placeholder="Confirm Password">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="password" name="password" placeholder="Password">
+          <input style="width:25%; height:40px; font-size:10pt; text-align:center" required type="password" name="cpassword" placeholder="Confirm Password">
           <br><br>
-         <input type="submit" class="submitBut">
+         <input type="submit" class="submitBut" style="height:50px;"><br><br><br>
        </form>
       
-    </div>
+    </div></center>
   </div>
 </body>

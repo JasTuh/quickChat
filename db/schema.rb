@@ -14,8 +14,9 @@
 ActiveRecord::Schema.define(version: 20140721153830) do
 
   create_table "conversations", force: true do |t|
-    t.string "title"
-    t.string "secret"
+    t.string  "title"
+    t.string  "secret"
+    t.integer "time"
   end
 
   create_table "messages", force: true do |t|
