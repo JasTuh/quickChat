@@ -87,7 +87,7 @@
       var input     = document.getElementById('input');
       input.onclick = function(){ input.value = "" };
       f.onsubmit    = function(){
-        ws.send(escapeHtml(input.value) + "," + <%=session[:user_id]%>);
+        ws.send(input.value + "," + <%=session[:user_id]%>);
         input.value = "";
         return false;
       }
