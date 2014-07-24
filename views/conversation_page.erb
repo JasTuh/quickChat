@@ -12,6 +12,7 @@
            <label><%=flash[:message]if flash[:message]%><input type="text" name="title" placeholder="Title"></label>
             <select name="username" form="addFriendThing"placeholder="Username" style="width:120px;border-radius:10px;">
                   <option value="">Select A User!</option>
+                  <option value="noone">No One!</option>
               <% User.all.each do |t| %>
                 <% if t.id != session[:user_id] %> 
                   <option value="<%=t.username%>"><%=t.username%></option>
