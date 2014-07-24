@@ -209,8 +209,8 @@ get '/delete/:id' do
         redirect '/'
     else
         Conversation.destroy(params[:id])
-        a = Message.where(conversation_id:params[:id])
-        a = UserConversation.where(conversation_id:params[:id])
+        a = Message.where(conversation_id:params[:id]).destroy_all
+        a = UserConversation.where(conversation_id:params[:id]).destroy_all
         
         redirect '/'
     end

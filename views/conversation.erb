@@ -4,7 +4,7 @@
 	<div class="back addFriends" >Add Friends</div>
 	<% if @users.include?session[:user_id] %>
 		<h1 id="title"><%=@conversation.title%></h1>
-		<h5 style="text-align:center"><p>Copy this link and share to friends! <br>quick-chat.herokuapp.com/join?id=<%=@conversation.id%>&ksy=<%=@conversation.secret%></p></h5>
+		<h5 style="text-align:center"><p>Copy this link to share to friends: <br>quick-chat.herokuapp.com/join?id=<%=@conversation.id%>&ksy=<%=@conversation.secret%></p></h5>
 		<%=flash[:message]if flash[:message]%>
 	<% else %>
 		<h1> you are not allowed to be here bud </h1>
