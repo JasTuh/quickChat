@@ -166,8 +166,6 @@ get '/conversation/:id' do
                         content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
                         time1 = Time.new
                         a = Message.create(content:content, conversation_id:cID, created:time1);
-                        puts "TIME"
-                        puts a.created
                         EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
                     end
                 end
@@ -184,8 +182,6 @@ post '/login-validation' do
     @user = User.find_by_username params[:username]
     if @user && @user.password == params[:password]
         session[:user_id] = @user.id
-        puts "IS IT NIL?"
-        puts session[:user_id]
         redirect '/'
     else
         flash[:message] = "Try again"

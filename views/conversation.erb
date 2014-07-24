@@ -60,7 +60,7 @@
  window.onload = function(){
   (function(){
     var show = function(el){
-      return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  msg  + '</li>'}
+      return function(msg){ el.innerHTML =el.innerHTML + '<li class="message">' +  escapeHtml(msg)  + '</li>'}
     }(document.getElementById('msgs'));
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
     // ws.onopen    = function()  { show('websocket opened'); };
@@ -70,12 +70,24 @@
         window.scroll(0, document.documentElement.offsetHeight);
 
     };
-
+    var entityMap = {
+	    "&": "&amp;",
+	    "<": "&lt;",
+	    ">": "&gt;",
+	    '"': '&quot;',
+	    "'": '&#39;',
+	    "/": '&#x2F;'
+  	};
+  	function escapeHtml(string) {
+	    return String(string).replace(/[&<>"'\/]/g, function (s) {
+	      return entityMap[s];
+	    });
+  	}
     var sender = function(f){
       var input     = document.getElementById('input');
       input.onclick = function(){ input.value = "" };
       f.onsubmit    = function(){
-        ws.send(input.value + "," + <%=session[:user_id]%>);
+        ws.send(escapeHtml(input.value) + "," + <%=session[:user_id]%>);
         input.value = "";
         return false;
       }

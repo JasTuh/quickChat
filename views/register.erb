@@ -4,6 +4,7 @@
        <h1 class="mainTitle">Quick Chat!</h1>
 
     <div class="registerformThing" style="position:absolute;">
+       <h1 class="titleLoginForm">Register</h1>
        <%=flash[:message]if flash[:message]%>
        <form id="form" method="POST" action="/register-validation">
           <input required type="text" name="fname" placeholder="First Name">
