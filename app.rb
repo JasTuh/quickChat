@@ -7,6 +7,8 @@ require 'bundler/setup'
 require 'rack-flash'
 
 require "sinatra/activerecord"
+
+require 'bcrypt'
 require './models'
 set :sessions, true
 use Rack::Flash, :sweep => true
@@ -36,7 +38,7 @@ post '/register-validation' do
         a = User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
         @user = User.find_by_username params[:username]
         session[:user_id] = a.id
-        redirect '/'
+        redirect '/welcome'
     end
     if @user
         flash[:message] = "Username is already taken."
@@ -253,4 +255,8 @@ post '/search' do
     else
         erb :userlist
     end
+end
+
+get '/welcome' do
+    erb :welcome
 end

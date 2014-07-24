@@ -6,7 +6,7 @@ gem 'sinatra-activerecord'
 gem 'rake'
 gem 'rack-flash3', :git => "git://github.com/treeder/rack-flash.git"
 gem 'sinatra-websocket'
-
+gem 'bcrypt'
 group :development do
 	gem 'sqlite3'
 end

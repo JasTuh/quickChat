@@ -460,3 +460,11 @@ a{
 	left:0%;
 	font-style: bold;	
 }
+.descriptionWrapper{
+	width: 75%;
+	margin: 0 auto;
+	text-align: center;
+}
+.description{
+	font-size: 15pt;
+}

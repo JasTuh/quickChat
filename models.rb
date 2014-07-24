@@ -1,6 +1,16 @@
 class User < ActiveRecord::Base
+	include BCrypt
 	has_many :user_conversations
 	has_many :conversations, through: :user_conversations
+	# users.password_hash in the database is a :string
+	def password
+	  @password ||= Password.new(password_hash)
+	end
+
+	def password=(new_password)
+	  @password = Password.create(new_password)
+	  self.password_hash = @password
+	end
 end
 class Conversation < ActiveRecord::Base
 	has_many :messages
