@@ -355,9 +355,9 @@ a{
 .loginformContainer{
 	position: absolute;
 	top: 50%;
-	left:36%;
+	left:10%;
 	background-color: white;
-	width: 338px;
+	width: 80%;
 	height: 30%;
 	border-radius: 10px;
 	opacity: 0.4;

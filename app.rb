@@ -174,9 +174,7 @@ get '/conversation/:id' do
                 ws.onclose do
                     Sock.destroy(sk)
                 end
-            end
-
-            
+            end             
         end
     end
 end
