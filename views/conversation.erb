@@ -21,7 +21,7 @@
 		<%i = 0
 		for m in @messages%>
 		 	<% time1 = Time.new
-		 	if (time1.utc) < (m.created+(@conversation.time*1000))%>
+		 	if (time1.utc) < (m.created+(@conversation.time))%>
 				<li class="message">
 					<%=m.content%>
 					<script type="text/javascript">
