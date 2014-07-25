@@ -246,6 +246,11 @@ post '/search' do
     @users.push(User.find_by_fname(params[:search].capitalize))
     @users.push(User.find_by_lname(params[:search].capitalize))
     @users.push(User.find_by_email(params[:search]))
+    User.all.each do |u| 
+        if u.username.include? params[:search]
+            @users.push(u);
+        end
+    end
     b = true
     @users.each do |t|
         if t != nil
