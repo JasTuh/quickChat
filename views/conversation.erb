@@ -88,7 +88,7 @@
      }
     }(document.getElementById('msgs'));
     var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
-    ws.onopen    = function()  { ws.send("entered the chatroom." + "," + <%=session[:user_id]%>); };
+    ws.onopen    = function()  { setTimeout( function () {ws.send("entered the chatroom." + "," + <%=session[:user_id]%>); }, 250) };
     // ws.onclose   = function()  { ws.send("left the chatroom." + "," + <%=session[:user_id]%>); }
     ws.onmessage = function(m) { 
     	show(m.data); 
