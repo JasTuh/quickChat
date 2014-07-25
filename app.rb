@@ -10,8 +10,8 @@ require "sinatra/activerecord"
 
 require 'bcrypt'
 require './models'
-require './secret.rb'
 set :sessions, true
+require './secret.rb'
 use Rack::Flash, :sweep => true
 set :server, 'thin'
 set :sockets, []
@@ -233,10 +233,8 @@ end
 get '/makeConversation/:id' do
     o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     string = (0...50).map { o[rand(o.length)] }.join
-    @conversation = Conversation.create(title:"Hello!", secret:string, time:60)
-    UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)    
-    UserConversation.create(user_id:params[:id], conversation_id:@conversation.id)
-    redirect "/conversation/#{@conversation.id}"
+    @usertoshow = User.find(params[:id])
+    erb :conversation_page
 end
 post '/search' do
     @users = []

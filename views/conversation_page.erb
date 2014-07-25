@@ -7,7 +7,8 @@
           <label style="font-size:25pt;"><%=flash[:message]if flash[:message]%>
             <input required type="text" name="title" placeholder="Title" style="width:25%; height:50px; font-size:12.5pt; text-align:center">
           </label>
-         <select name="username" form="addFriendThing"placeholder="Username" style="width:25%; height:50px;border-radius:10px;font-size:12.5pt;">
+         <select name="username" form="addFriendThing"placeholder="Username" value="<%=@usertoshow.username if @usertoshow%>"style="width:25%; height:50px;border-radius:10px;font-size:12.5pt;">
+         <% if !@usertoshow %>
           <option value="">Who to add!</option>
           <option value="noone">No One!</option>
           <% User.all.each do |t| %>
@@ -15,7 +16,14 @@
              <option value="<%=t.username%>"><%=t.username%></option>
             <% end %>
           <%end%>
-
+          <% else %>
+            <option value="<%=@usertoshow.username%>"><%=@usertoshow.username%></option>
+            <% User.all.each do |t| %>
+              <% if t.id != session[:user_id] && t.id != @usertoshow.id%> 
+                <option value="<%=t.username%>"><%=t.username%></option>
+              <% end %>
+            <%end%>
+          <%end%>
         </select>
         <br><br>
         <label style="font-size:25pt;">

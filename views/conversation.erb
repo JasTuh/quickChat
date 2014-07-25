@@ -104,7 +104,12 @@
       var input     = document.getElementById('input');
       input.onclick = function(){ input.value = "" };
       f.onsubmit    = function(){
-        ws.send(input.value + "," + <%=session[:user_id]%>);
+      	try {
+        	ws.send(input.value + "," + <%=session[:user_id]%>);
+        }
+        catch (err){
+        	window.location.href = "/";
+        }
         input.value = "";
         return false;
       }
@@ -112,7 +117,7 @@
   })();
 }
 $(".addFriendsPopup").hide()
-$(".showShareFriends").hide()
+$(".shareFriends").hide()
 $(".addFriends").click(function(){
   $(".addFriendsPopup").show()
   $(".closeBox").click(function(){
