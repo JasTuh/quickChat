@@ -10,6 +10,7 @@ require "sinatra/activerecord"
 
 require 'bcrypt'
 require './models'
+require './secret.rb'
 set :sessions, true
 use Rack::Flash, :sweep => true
 set :server, 'thin'
@@ -34,6 +35,7 @@ get '/register' do
 end
 post '/register-validation' do
     @user = User.find_by_username(params[:username])
+
     if !@user && params[:password] == params[:cpassword]
         a = User.create(username:params[:username], email:params[:email], password:params[:password], fname:params[:fname], lname:params[:lname])
         @user = User.find_by_username params[:username]

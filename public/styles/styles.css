@@ -406,6 +406,12 @@ a{
 	line-height: 10px;
 	margin-bottom: 0%;	
 }
+.inputRegister{
+	width:25%; 
+	height:40px; 
+	font-size:10pt; 
+	text-align:center
+}
 .newConversationContainer{
 	position: absolute;
 	top: 40%;
