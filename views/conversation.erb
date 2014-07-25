@@ -24,11 +24,13 @@
 		 	if (time1.utc) < (m.created+(@conversation.time))%>
 				<li class="message">
 					<%=m.content%>
-					<script type="text/javascript">
-						a = new Date()
-   						b = new Date(+a + <%(@conversation.time*1000)%>)
-      					timeAr.push(b)
-					</script>
+					<% if !@done %>
+						<script type="text/javascript">
+							a = new Date()
+	   						b = new Date(+a + <%(@conversation.time*1000)%>)
+	      					timeAr.push(b)
+						</script>
+					<% end %>
 					<hr style="width:100%; margin-left:0">
 				</li>
 				
@@ -37,6 +39,7 @@
 			<%end%>
 		<% i+=1 %>
 		<%end%>
+		<% @done=true %>
 	</ul>
 	<br><br><br><br>
 	<form id="form">

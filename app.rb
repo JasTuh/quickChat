@@ -149,6 +149,7 @@ get '/conversation/:id' do
             @users.push(u.user_id)
         end
         @messages = Message.where(conversation_id:params[:id])
+        @done = false
         erb :conversation
     else
         request.websocket do |ws|
