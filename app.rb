@@ -11,7 +11,6 @@ require "sinatra/activerecord"
 require 'bcrypt'
 require './models'
 set :sessions, true
-require './secret.rb'
 use Rack::Flash, :sweep => true
 set :server, 'thin'
 set :sockets, []
