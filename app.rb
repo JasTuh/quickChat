@@ -177,7 +177,7 @@ get '/conversation/:id' do
                     end
                 end
                 ws.onclose do
-                    redirect '/'
+                    Sock.destroy(sk);
                 end
             end
                          
