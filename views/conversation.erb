@@ -108,6 +108,9 @@
 	      return entityMap[s];
 	    });
   	}
+  	setInterval(function(){
+  		ws.send("");
+  	}, 1000)
     var sender = function(f){
       var input     = document.getElementById('input');
       input.onclick = function(){ input.value = "" };

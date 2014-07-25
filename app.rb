@@ -157,21 +157,23 @@ get '/conversation/:id' do
                 loc = settings.sockets.length-1
                 sk = Sock.create(array_index:loc, conversation_id:cID)
                 ws.onmessage do |msg|
-                    lookUp = Sock.where(conversation_id:cID)
-                    ar = msg.split(",")
-                    tstring = ""
-                    for i in 0..ar.length-2
-                        if (i != ar.length-2)
-                            tstring += ar[i] + ", "
-                        else
-                            tstring += ar[i]
+                    if (msg != "")
+                        lookUp = Sock.where(conversation_id:cID)
+                        ar = msg.split(",")
+                        tstring = ""
+                        for i in 0..ar.length-2
+                            if (i != ar.length-2)
+                                tstring += ar[i] + ", "
+                            else
+                                tstring += ar[i]
+                            end
                         end
-                    end
-                    if tstring != ""
-                        content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
-                        time1 = Time.new
-                        a = Message.create(content:content, conversation_id:cID, created:time1);
-                        EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
+                        if tstring != ""
+                            content = (User.find(ar[ar.length-1]).username +  ": " + tstring)
+                            time1 = Time.new
+                            a = Message.create(content:content, conversation_id:cID, created:time1);
+                            EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
+                        end
                     end
                 end
                 ws.onclose do
