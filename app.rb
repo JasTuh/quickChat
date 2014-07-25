@@ -64,9 +64,10 @@ post '/addconvo' do
         flash[:message] = "Please Select A User"
         erb :conversation_page
     elsif params[:username] == "noone"
+        puts "NO ONE"
         o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
         string = (0...50).map { o[rand(o.length)] }.join
-        @conversation = Conversation.create(title:params[:title], secret:string, time:timeTo)
+        @conversation = Conversation.create(title:params[:title], secret:string, time:timeTo, created:User.find(session[:user_id]).username)
         UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
         redirect "/conversation/#{@conversation.id}"
     else
@@ -75,7 +76,7 @@ post '/addconvo' do
         if (user)
             o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
             string = (0...50).map { o[rand(o.length)] }.join
-            @conversation = Conversation.create(title:params[:title], secret:string, time:timeTo)
+            @conversation = Conversation.create(title:params[:title], secret:string, time:timeTo, created:User.find(session[:user_id]).username)
             UserConversation.create(user_id:user2.id, conversation_id:@conversation.id)
             UserConversation.create(user_id:user.id, conversation_id:@conversation.id)
             redirect "/conversation/#{@conversation.id}"

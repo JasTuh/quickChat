@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140721153830) do
   create_table "conversations", force: true do |t|
     t.string  "title"
     t.string  "secret"
+    t.string  "created"
     t.integer "time"
   end
 

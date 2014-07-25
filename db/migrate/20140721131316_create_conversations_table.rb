@@ -3,6 +3,7 @@ class CreateConversationsTable < ActiveRecord::Migration
   	create_table :conversations do |t|
   		t.string :title
   		t.string :secret
+  		t.string :created
   		t.integer :time
   	end
   end

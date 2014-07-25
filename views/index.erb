@@ -9,7 +9,7 @@
        <% for c in @conversations.reverse %>
           <% if c != nil %>
             <a class="listLink" href="/conversation/<%=c.conversation_id%>">
-              <%=Conversation.find(c.conversation_id).title%> <a href="/delete/<%=c.conversation_id%>">Delete</a>
+              <%=Conversation.find(c.conversation_id).title%> <% if Conversation.find(c.conversation_id).created == User.find(session[:user_id]).username %> <a href="/delete/<%=c.conversation_id%>">Delete</a> <%end%>
               <br>
             </a>
           <%end%>
