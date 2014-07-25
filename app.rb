@@ -64,7 +64,6 @@ post '/addconvo' do
         flash[:message] = "Please Select A User"
         erb :conversation_page
     elsif params[:username] == "noone"
-        puts "NO ONE"
         o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
         string = (0...50).map { o[rand(o.length)] }.join
         @conversation = Conversation.create(title:params[:title], secret:string, time:timeTo, created:User.find(session[:user_id]).username)
@@ -95,16 +94,14 @@ get '/join' do
         erb :login_join
     else
         @conversation=Conversation.find(id)
-        puts "#{@conversation.secret} = #{secret}"
         if @conversation.secret == secret
-            puts "ALMOST THERE BUD"
+
         end
         if @conversation && @conversation.secret == secret
             a = UserConversation.where(user_id:session[:user_id], conversation_id:@conversation.id)
-            puts "a!!!"
+
             puts a
             if a.blank?
-                puts "HELLO"
                 UserConversation.create(user_id:session[:user_id], conversation_id:@conversation.id)
             end
             redirect "/conversation/#{@conversation.id}"
