@@ -324,11 +324,13 @@ text-decoration: none;
 	float: left;
 	padding-top: 0.5%;
 	padding-bottom: 0.5%;
+	font-size: 16pt;
 }
 .navBarElementLast{
 	width: 15%;
 	float: left;
 	padding-top: 0.5%;
+	font-size: 16pt;
 	padding-bottom: 0.5%;
 }
 .navBarElement:hover{
