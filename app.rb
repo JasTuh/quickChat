@@ -174,10 +174,11 @@ get '/conversation/:id' do
                         EM.next_tick { lookUp.each{|s| settings.sockets[s.array_index].send(content) } }
                     end
                 end
+                ws.onclose do
+                    redirect '/'
+                end
             end
-            ws.onclose do
-                redirect '/'
-            end             
+                         
         end
     end
 end
