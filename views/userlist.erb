@@ -19,7 +19,7 @@
             <h2><%=c.fname%> <%=c.lname%> (<%=c.username%>)</h2>
             <a href="/makeConversation/<%=c.id%>"> Start a conversation! </a>
             <hr style="border-color:black; background-coor:black; border:0.1x solid;">
-          <% elsif c.id == session[:user_id] %>
+          <% elsif c!= nil && c.id == session[:user_id] %>
               <h2><%=c.fname%> <%=c.lname%> (<%=c.username%>) (you!)</h2>
               <hr style="border-color:black; background-coor:black; border:0.1x solid;">
           <%end%>
